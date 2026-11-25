@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101827"><meta name="description" content="PC Mirror - koneksi P2P gratis">
-<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg">
 <title>PC Mirror</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#131e30;--panel2:#1b2940;--line:#2b3b55;--txt:#edf4ff;--muted:#9aabc3;--blue:#4c9cff;--green:#36c98b;--red:#ff6878}
@@ -47,5 +47,5 @@ let pointerHeld=false;function movePointer(e){const r=$('remoteVideo').getBoundi
 $('remoteVideo').addEventListener('pointerdown',e=>{pointerHeld=true;e.currentTarget.setPointerCapture(e.pointerId);movePointer(e);send({type:'input',action:'click',button:'left',x:rx,y:ry})});$('remoteVideo').addEventListener('pointermove',e=>{if(pointerHeld)movePointer(e)});$('remoteVideo').addEventListener('pointerup',()=>pointerHeld=false);$('remoteVideo').addEventListener('pointercancel',()=>pointerHeld=false);
 $('getFile').onclick=()=>{const name=$('remoteFile').value.trim();if(name)send({type:'file-get',name})};
 $('sendFile').onclick=async()=>{const f=$('fileInput').files[0];if(!f||!dc||dc.readyState!=='open')return;$('fileStatus').textContent='Mengirim '+f.name+'…';send({type:'file-start',name:f.name,size:f.size});for(let i=0;i<f.size;i+=18*1024){const buf=await f.slice(i,i+18*1024).arrayBuffer();let bin='';new Uint8Array(buf).forEach(x=>bin+=String.fromCharCode(x));send({type:'file-chunk',data:btoa(bin)})}send({type:'file-end'});};
-if('serviceWorker'in navigator&&location.protocol==='https:')navigator.serviceWorker.register('/sw.js').catch(()=>{});
+if('serviceWorker'in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js', {scope: './'}).catch(()=>{});
 </script></body></html>
