@@ -1,7 +1,7 @@
 {
   "name": "PC Mirror",
   "short_name": "PC Mirror",
-  "description": "Mirroring dan kendali PC melalui WebRTC P2P",
+  "description": "PC Mirror P2P gratis dengan diagnostik ICE",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
